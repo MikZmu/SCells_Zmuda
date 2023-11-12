@@ -1,0 +1,54 @@
+<ScrollView android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+    android:tag="sv"
+    android:id="@+id/fc"
+    tools:context=".circuitFragment"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:tag="sv2">
+
+
+        <LinearLayout
+            android:id="@+id/row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:tag="ll">
+
+            <include
+                android:id="@+id/c0"
+                layout="@layout/column"
+                android:tag="c0"></include>
+
+            <include
+                android:id="@+id/c1"
+                layout="@layout/column"
+                android:tag="c1"></include>
+
+            <include
+                android:id="@+id/c2"
+                layout="@layout/column"
+                android:tag="c2"></include>
+
+            <include
+                android:id="@+id/c3"
+                layout="@layout/column"
+                android:tag="c3"></include>
+
+            <include
+                android:id="@+id/c4"
+                layout="@layout/column"
+                android:tag="c4"></include>
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+</ScrollView>
