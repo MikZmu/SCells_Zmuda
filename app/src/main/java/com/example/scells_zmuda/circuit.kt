@@ -88,9 +88,16 @@ class circuit() {
 
     fun modify(startLine:Int, endLine:Int, startCell:Int,endCell:Int,illu:Double,temp:Double,name:String){
         var i = startLine
+        var modded:ArrayList<Int> = ArrayList()
         while(i <= endLine){
             this.lines.get((i)/3).modify( (i).mod(3) * 25 + startCell, (i).mod(3)*25+ endCell,name,temp,illu)
+            modded.add(i/3)
             i++
+        }
+        for(i in modded){
+            if(this.lines[i].nonZero){
+                this.lines[i].update()
+            }
         }
         gridX = Matrix_Cell.gridX(0.01,smallestVoltage())
         perfectGridX = this.lines[longestIndex()].perfectGridX

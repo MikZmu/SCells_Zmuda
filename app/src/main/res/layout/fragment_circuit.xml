@@ -422,56 +422,84 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.972" />
 
-        <Button
-
-            android:id="@+id/eightyPercent"
+        <LinearLayout
+            android:id="@+id/gama"
             android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="32dp"
-            android:background="@color/orange"
+            android:layout_height="80dp"
+            android:layout_marginTop="28dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.781"
+            app:layout_constraintHorizontal_bias="0.82"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toggle" />
+            app:layout_constraintTop_toBottomOf="@+id/toggle"
+            app:layout_constraintVertical_bias="0.0">
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:background="@color/orange"
-            android:id="@+id/sixtyPercent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/eightyPercent"
-            app:layout_constraintTop_toBottomOf="@+id/eightyPercent" />
+            <ImageButton
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            app:layout_constraintEnd_toEndOf="@+id/sixtyPercent"
-            app:layout_constraintStart_toStartOf="@+id/sixtyPercent"
-            app:layout_constraintTop_toBottomOf="@+id/sixtyPercent"
-            android:background="@color/orange"
-            android:id="@+id/fourtyPercent"/>
+                android:id="@+id/eightyPercent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/cell_lightgray"/>
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@color/orange"
-            app:layout_constraintRight_toRightOf="@id/fourtyPercent"
-            app:layout_constraintTop_toBottomOf="@id/fourtyPercent"
-            app:layout_constraintLeft_toLeftOf="@id/fourtyPercent"
-            android:id="@+id/twentyPercent">
-        </Button>
+            <ImageButton
+                android:id="@+id/sixtyPercent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:src="@drawable/cell_lightgray"/>
 
-        <Button
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@color/orange"
-            android:id="@+id/zeroPercent"
-            app:layout_constraintTop_toBottomOf="@id/twentyPercent"
-            app:layout_constraintLeft_toLeftOf="@id/twentyPercent">
+            <ImageButton
+                android:id="@+id/fourtyPercent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:src="@drawable/cell_lightgray"/>
 
-        </Button>
+            <ImageButton
+                android:id="@+id/twentyPercent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:src="@drawable/cell_lightgray"/>
+
+            <ImageButton
+                android:id="@+id/zeroPercent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/orange"
+                android:src="@drawable/cell_lightgray">
+
+            </ImageButton>
+
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="max"
+            android:id="@+id/max"
+            android:textSize="15dp"
+            android:textColor="@color/yellow"
+            app:layout_constraintRight_toLeftOf="@id/gama"
+            app:layout_constraintTop_toTopOf="@id/gama">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="min"
+            android:id="@+id/min"
+            android:textSize="15dp"
+            android:textColor="@color/yellow"
+            app:layout_constraintRight_toLeftOf="@id/gama"
+            app:layout_constraintBottom_toBottomOf="@id/gama">
+        </TextView>
+
 
 
 

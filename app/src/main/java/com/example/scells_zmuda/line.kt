@@ -36,8 +36,12 @@ class line() {
             this.cells.get(i).changeParams(name,illu, temp)
             i++;
         }
-        this.gridY = this.cells.get(shortestYindex()).yGridArray
         this.nonZero = nonZero()
+
+    }
+
+    fun update(){
+        this.gridY = this.cells.get(shortestYindex()).yGridArray
         var sums = calculateSum()
         this.sum = sums[0]
         this.perfectSum = sums[1]
@@ -95,7 +99,7 @@ class line() {
         var returnVal:Int = this.cells.get(0).yGridArray.size
         var returnIndex:Int = 0
         for(i in this.cells){
-            if(i.normalisedXArray.size <= returnVal && !(i.name != "zeros.")){
+            if(i.normalisedXArray.size <= returnVal && (i.name != "zeros.")){
                 returnVal = i.normalisedXArray.size
                 returnIndex = this.cells.indexOf(i)
             }

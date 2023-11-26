@@ -59,6 +59,7 @@ class graphFragment : Fragment() {
         var spw = binding.showpower
         var scr = binding.showcurrent
         var sls = binding.perfectCircuit
+        var optres:TextView = binding.opt
 
         var currentSeries:LineGraphSeries<DataPoint> = helper.circuit.dataPoints
         currentSeries.thickness = 3
@@ -121,9 +122,9 @@ class graphFragment : Fragment() {
             var pop = results[2]
             var uop = results[0]
             var iop = results[1]
-            Pop.setText(pop.toString())
-            Iop.setText(iop.toString())
-            Uop.setText(uop.toString())
+            Pop.setText(circuit.round(2,pop).toString())
+            Iop.setText(circuit.round(2,iop).toString())
+            Uop.setText(circuit.round(2,uop).toString())
         }
 
         uoc.setText(circuit.round(2,helper.circuit.Uoc).toString())
@@ -132,7 +133,7 @@ class graphFragment : Fragment() {
         Upmax.setText((round(helper.circuit.Umax*100)/100).toString())
         Imax.setText((round(helper.circuit.Imax*100)/100).toString())
         ff.setText((round(helper.circuit.FF*100)/100).toString())
-
+        optres.setText(circuit.round(2, (helper.circuit.Umax)/(helper.circuit.Imax)).toString())
         return root
     }
 }

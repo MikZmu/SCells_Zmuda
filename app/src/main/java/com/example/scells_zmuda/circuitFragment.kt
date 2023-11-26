@@ -157,6 +157,28 @@ class circuitFragment : Fragment(),View.OnClickListener {
 
         var toggle = binding.toggle
 
+
+        var eighty:ImageButton = binding.eightyPercent
+        var sixty:ImageButton = binding.sixtyPercent
+        var forty:ImageButton = binding.fourtyPercent
+        var twenty:ImageButton = binding.twentyPercent
+        var zero:ImageButton = binding.zeroPercent
+
+        if(vm.getToggle()){
+            eighty.setColorFilter(Color.argb(255,0,255,230))
+            sixty.setColorFilter(Color.argb(255,0,255,180))
+            forty.setColorFilter(Color.argb(255,0,255,130))
+            twenty.setColorFilter(Color.argb(255,0,255,80))
+            zero.setColorFilter(Color.argb(255,0,255,30))
+        } else {
+            eighty.setColorFilter(Color.argb(255,255,230,0))
+            sixty.setColorFilter(Color.argb(255,255,180,0))
+            forty.setColorFilter(Color.argb(255,255,130,0))
+            twenty.setColorFilter(Color.argb(255,255,80,0))
+            zero.setColorFilter(Color.argb(255,255,30,0))
+        }
+
+
         toggle.setOnClickListener {
             vm.toggleToggle()
             if(vm.getToggle()){
@@ -164,12 +186,30 @@ class circuitFragment : Fragment(),View.OnClickListener {
             } else{
                 toggle.setText("ILLU")
             }
+
+
+            if(vm.getToggle()){
+                eighty.setColorFilter(Color.argb(255,0,255,230))
+                sixty.setColorFilter(Color.argb(255,0,255,180))
+                forty.setColorFilter(Color.argb(255,0,255,130))
+                twenty.setColorFilter(Color.argb(255,0,255,80))
+                zero.setColorFilter(Color.argb(255,0,255,30))
+            } else {
+                eighty.setColorFilter(Color.argb(255,255,230,0))
+                sixty.setColorFilter(Color.argb(255,255,180,0))
+                forty.setColorFilter(Color.argb(255,255,130,0))
+                twenty.setColorFilter(Color.argb(255,255,80,0))
+                zero.setColorFilter(Color.argb(255,255,30,0))
+            }
             clrBtns()
         }
 
 
         clrBtns()
         this.markButtons(vm.getFX(),vm.getSX(),vm.getFY(),vm.getSY(),vm.getCnter())
+
+
+
 
         return root
     }

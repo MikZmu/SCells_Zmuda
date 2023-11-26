@@ -13,15 +13,8 @@
         android:id="@+id/graph"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034"
-        android:padding="20dp"
-        android:layout_marginVertical="25dp"
+        android:layout_weight="2"
+        android:layout_marginVertical="5dp"
         android:layout_marginHorizontal="25dp"/>
 
 
@@ -29,18 +22,16 @@
         android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:columnCount="4"
-        android:rowCount="4"
+        android:layout_weight="2"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="25dp">
+        android:layout_marginBottom="15dp">
 
         <Button
             android:id="@+id/btn"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_row="3"
-            android:layout_rowWeight="1"
+            android:layout_rowWeight="2"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:background="@color/orange"
@@ -75,7 +66,7 @@
             android:padding="5dp"
             android:text="Illumination [W/m2]"
             android:textColor="@color/orange"
-            android:textSize="18dp">
+            android:textSize="15dp">
 
         </TextView>
 
@@ -89,7 +80,7 @@
             android:padding="5dp"
             android:text="Temperature [C]"
             android:textColor="@color/orange"
-            android:textSize="18dp"></TextView>
+            android:textSize="15dp"></TextView>
 
         <TextView
             android:id="@+id/textView8"
@@ -102,43 +93,55 @@
             android:padding="5dp"
             android:text="Resistance [Ohm]"
             android:textColor="@color/orange"
-            android:textSize="18dp">
+            android:textSize="15dp">
 
         </TextView>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/illutxt"
+            android:text="1000"
             android:layout_width="0dp"
-            android:layout_height="23dp"
             android:layout_row="0"
+            android:layout_gravity="top"
+            android:layout_height="30dp"
+            android:layout_rowWeight="1"
             android:layout_column="1"
             android:layout_columnWeight="2"
-            android:layout_gravity="center_vertical"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:background="@color/light_gray"
-            android:padding="5dp"></com.google.android.material.textfield.TextInputEditText>
+            ></com.google.android.material.textfield.TextInputEditText>
 
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/temptxt"
+            android:text="25"
             android:layout_width="0dp"
-            android:layout_height="23dp"
+            android:layout_height="30dp"
             android:layout_row="1"
+            android:layout_gravity="top"
             android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center_vertical"
+            android:layout_columnWeight="2"
+            android:layout_rowWeight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:background="@color/light_gray"
             android:padding="5dp"></com.google.android.material.textfield.TextInputEditText>
 
         <com.google.android.material.textfield.TextInputEditText
+            android:text="5"
+            android:layout_marginVertical="5dp"
+            android:layout_gravity="top"
             android:id="@+id/restxt"
             android:layout_width="0dp"
-            android:layout_height="23dp"
+            android:layout_height="30dp"
             android:layout_row="2"
             android:layout_column="1"
-            android:layout_columnWeight="1"
-            android:layout_gravity="center_vertical"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="2"
+            android:textStyle="bold"
             android:background="@color/light_gray"
-            android:textColor="@color/orange">
+            android:textColor="@color/black">
 
         </com.google.android.material.textfield.TextInputEditText>
 
@@ -149,7 +152,7 @@
             android:layout_columnWeight="1"
             android:text="Show Power"
             android:textColor="@color/orange"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:textStyle="bold"
             android:layout_gravity="center_vertical"></TextView>
 
@@ -174,7 +177,7 @@
             android:text="Show Current"
             android:layout_gravity="center_vertical"
             android:textColor="@color/orange"
-            android:textSize="18dp"
+            android:textSize="15dp"
             android:textStyle="bold">
 
         </TextView>
@@ -193,20 +196,13 @@
     </GridLayout>
 
     <GridLayout
-        android:id="@+id/gridLayout2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:columnCount="4"
         android:rowCount="5"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.90999997"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginVertical="25dp">
+        android:layout_marginBottom="25dp">
 
         <TextView
             android:layout_width="0dp"
@@ -251,7 +247,7 @@
             android:layout_rowWeight="1"
             android:layout_column="0"
             android:layout_columnWeight="1"
-            android:text="Upmax = "
+            android:text="Upmax[V] = "
             android:textColor="@color/orange"
             android:textSize="18dp"
             android:textStyle="bold"></TextView>
@@ -263,7 +259,7 @@
             android:layout_rowWeight="1"
             android:layout_column="0"
             android:layout_columnWeight="1"
-            android:text="Ipmax = "
+            android:text="Ipmax[A] = "
             android:textColor="@color/orange"
             android:textSize="18dp"
             android:textStyle="bold"></TextView>
@@ -338,7 +334,6 @@
         </TextView>
 
         <TextView
-            android:id="@+id/ff"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_row="0"
@@ -357,7 +352,7 @@
             android:layout_rowWeight="1"
             android:layout_column="2"
             android:layout_columnWeight="1"
-            android:text="Uop = "
+            android:text="Uop[V] = "
             android:textColor="@color/orange"
             android:textSize="18dp"
             android:textStyle="bold"></TextView>
@@ -369,7 +364,7 @@
             android:layout_rowWeight="1"
             android:layout_column="2"
             android:layout_columnWeight="1"
-            android:text="Iop = "
+            android:text="Iop[A] = "
             android:textColor="@color/orange"
             android:textSize="18dp"
             android:textStyle="bold"></TextView>
@@ -381,7 +376,7 @@
             android:layout_rowWeight="1"
             android:layout_column="2"
             android:layout_columnWeight="1"
-            android:text="Pop = "
+            android:text="Pop[W] = "
             android:textColor="@color/orange"
             android:textSize="18dp"
             android:textStyle="bold">
@@ -395,7 +390,7 @@
             android:layout_rowWeight="1"
             android:layout_column="2"
             android:layout_columnWeight="1"
-            android:text="Opt. Res. = "
+            android:text="Opt. Load = "
             android:textColor="@color/orange"
             android:textSize="18dp"
             android:textStyle="bold">
@@ -422,6 +417,7 @@
             android:layout_height="0dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
+            android:textColor="@color/orange"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:textSize="18dp"
@@ -433,6 +429,7 @@
             android:layout_height="0dp"
             android:layout_row="2"
             android:layout_rowWeight="1"
+            android:textColor="@color/orange"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:width="0dp"
