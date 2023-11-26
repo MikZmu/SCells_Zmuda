@@ -17,295 +17,295 @@
 
             <ImageButton
                 android:id="@+id/r0"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r0"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r1"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r2"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r3"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r4"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r5"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r6"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r7"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r8"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r9"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r10"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r11"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r12"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r13"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r14"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r15"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r16"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r17"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r18"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r19"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r20"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r21"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r22"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r23"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 
             </ImageButton>
 
             <ImageButton
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:tag="r24"
                 android:text="pepe"
                 android:src="@drawable/cell_lightgray"
-                android:padding="0.2dp"
+                android:padding="0.5dp"
                 android:scaleType="fitCenter"
                 android:adjustViewBounds="true">
 

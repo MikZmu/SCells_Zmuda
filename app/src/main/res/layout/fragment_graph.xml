@@ -1,22 +1,414 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".graphFragment">
+    tools:context=".graphFragment"
+    android:background="@color/black"
+    android:orientation="vertical">
 
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
-        android:layout_width="372dp"
-        android:layout_height="261dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.076" />
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginVertical="25dp"
+
+    />
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginVertical="25dp"
+        android:layout_weight="0.5"
+        android:layout_marginHorizontal="25dp"
+
+        >
+
+        <TextView
+            android:text="Resistance[Ohm]"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="0">
+
+        </TextView>
+
+        <Button
+            android:id="@+id/calculate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/orange"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:text="CALCULATE"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:layout_rowSpan="2"></Button>
+
+        <CheckBox
+            android:id="@+id/perfectCircuit"
+            android:layout_column="2"
+            android:layout_row="2"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1">
+
+        </CheckBox>
+
+        <TextView
+            android:text="Show Losses"
+            android:textColor="@color/orange"
+            android:textSize="18dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical">
+        </TextView>
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:background="@color/light_gray"
+            android:padding="5dp"
+            android:layout_row="0"
+            android:layout_height="23dp"
+            android:layout_width="0dp"
+            android:layout_column="1"
+            android:layout_columnWeight="5"
+            android:layout_rowWeight="1"
+            android:id="@+id/resistance">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+        <CheckBox
+            android:id="@+id/showpower"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            >
+        </CheckBox>
+
+        <TextView
+            android:text="Show Power"
+            android:textStyle="bold"
+            android:textColor="@color/orange"
+            android:textSize="18dp"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical"
+            ></TextView>
+        <CheckBox
+            android:id="@+id/showcurrent"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_height="0dp"
+            android:layout_width="0dp">
+
+        </CheckBox>
+
+        <TextView
+            android:textSize="18dp"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:text="Show Current"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="center_vertical">
+
+        </TextView>
+
+    </GridLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="25dp"
+        android:layout_weight="1"
+        android:rowCount="5"
+        android:columnCount="4"
+        android:layout_marginBottom="25dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="2"
+            android:layout_rowWeight="1"
+            android:text="Uoc[V] = "
+            android:textColor="@color/orange"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_row="0"
+            android:layout_column="0"
+
+            ></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Isc[A] = "
+            android:textColor="@color/orange"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            ></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Pmax[W] = "
+            android:textColor="@color/orange"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:layout_row="2"
+            android:layout_column="0"
+            ></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Upmax = "
+            android:textColor="@color/orange"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="3"
+            android:layout_column="0"
+            ></TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="Ipmax[A] = "
+            android:textColor="@color/orange"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/uoc"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="1">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/isc"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="1">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/pmax"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="2"
+            android:layout_column="1">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/umax"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="3"
+            android:layout_column="1">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/imax"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="4"
+            android:layout_column="1">
+
+        </TextView>
+
+        <TextView
+            android:text="FF = "
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="2">
+
+        </TextView>
+
+        <TextView
+            android:text="Pop[W] = "
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:text="Uop[V] = "
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="2"
+            android:layout_column="2"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:text="Iop[A] = "
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="3"
+            android:layout_column="2"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:text="Opt.Res[Ohm]="
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="4"
+            android:layout_column="2"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="2"></TextView>
+
+
+        <TextView
+            android:id="@+id/ff"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="0"
+            android:layout_column="3"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:id="@+id/pop"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:id="@+id/iop"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="3"
+            android:layout_column="3"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:id="@+id/uop"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="2"
+            android:layout_column="3"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+        <TextView
+            android:id="@+id/opt"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_row="4"
+            android:layout_column="3"
+            android:textSize="16dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"></TextView>
+
+
+    </GridLayout>
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,6 +1,7 @@
 package com.example.scells_zmuda
 
 import android.graphics.Color
+import android.graphics.ColorFilter
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,8 +12,13 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ListView
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.myapplication2.helper
 import com.example.scells_zmuda.databinding.FragmentCircuitBinding
+import com.example.scells_zmuda.ui.theme.circuitFragmentViewModel
 import com.example.solar_cells_v3.Matrix_Cell
 import com.example.solar_cells_v3.cellList
 import com.jjoe64.graphview.series.DataPoint
@@ -24,46 +30,21 @@ class circuitFragment : Fragment(),View.OnClickListener {
 
     // This property is only valid between onCreateView and
     // onDestroyView.
+    val vm:circuitFragmentViewModel by activityViewModels()
     private val binding get() = _binding!!
     var firstX:Int = 0;
     var firstY:Int = 0;
     var secondX:Int = 0;
     var secondY:Int = 0;
     var illu:Double = 0.0;
-    var uoc:Double = 0.0;
-    var isc:Double=0.0;
-    var umax:Double=0.0;
-    var pmax:Double=0.0
-    var imax:Double=0.0
     var res:Double=0.0
     var cnter:Int=0;
     var name:String = "zeros"
     var temp:Double = 0.0
 
+    
 
-    override fun onCreate(savedInstanceState: Bundle?) {
 
-        super.onCreate(savedInstanceState)
-
-        if(savedInstanceState == (null)){
-
-        } else {
-            var firstX:Int = savedInstanceState.getInt("firstX")
-            var firstY:Int = savedInstanceState.getInt("firstY")
-            var secondX:Int = savedInstanceState.getInt("secondX")
-            var secondY:Int = savedInstanceState.getInt("secondY")
-            var uoc:Double = savedInstanceState.getDouble("uoc")
-            var isc:Double=savedInstanceState.getDouble("isc")
-            var umax:Double=savedInstanceState.getDouble("umax")
-            var pmax:Double=savedInstanceState.getDouble("pmax")
-            var imax:Double=savedInstanceState.getDouble("imax")
-            var res:Double=savedInstanceState.getDouble("res")
-            var cnter:Int=savedInstanceState.getInt("cnter")
-
-            markButtons(firstX, firstY, secondX, secondY, cnter)
-        }
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -134,32 +115,73 @@ class circuitFragment : Fragment(),View.OnClickListener {
         var illuFLD = binding.illumination
         var tempFLD = binding.temperature
         var cells:ListView = binding.cells
-        val arrayAdapter = ArrayAdapter(requireContext(),R.layout.custom_listview,helper.cellList.listCells())
+        val arrayAdapter = ArrayAdapter(requireContext(),
+            androidx.appcompat.R.layout.select_dialog_item_material,helper.cellList.listCells())
         cells.adapter = arrayAdapter
+
 
         cells.setOnItemClickListener{adapterView: AdapterView<*>, view2: View, i: Int, l: Long ->
             name = cells.getItemAtPosition(i).toString()
         }
+        cells.setItemChecked(0, true)
+        name = cells.getItemAtPosition(0).toString()
+        var uoc = binding.uocval
+        var isc = binding.iscval
+        var ff = binding.ffval
+        var pmax = binding.pmaxval
+        var upmax = binding.upmaxval
+        var ipmax = binding.ipmaxval
+        uoc.setText(helper.circuit.Uoc.toString() + " V")
+        isc.setText(helper.circuit.Isc.toString()+ " A")
+        ff.setText(helper.circuit.FF.toString())
+        pmax.setText(helper.circuit.Pmax.toString() + " W")
+        upmax.setText(helper.circuit.Umax.toString() + " V")
+        ipmax.setText(helper.circuit.Imax.toString() + " A")
 
         button.setOnClickListener {
-            this.temp = tempFLD.text.toString().toDouble()
-            this.illu = illuFLD.text.toString().toDouble()
-            modCircuit(firstX,secondX,firstY,secondY,cnter)
+            if(vm.getCnter() == 2 || vm.getCnter() == 0){
+                this.temp = tempFLD.text.toString().toDouble()
+                this.illu = illuFLD.text.toString().toDouble()
+                modCircuit(vm.getFX(),vm.getSX(),vm.getFY(),vm.getSY())
+                vm.changeData(vm.getFX(),vm.getSX(),vm.getFY(),vm.getSY(),this.illu,this.temp,this.name)
+                this.clrBtns()
+                uoc.setText(helper.circuit.Uoc.toString() + " V")
+                isc.setText(helper.circuit.Isc.toString()+ " A")
+                ff.setText(helper.circuit.FF.toString())
+                pmax.setText(helper.circuit.Pmax.toString() + " W")
+                upmax.setText(helper.circuit.Umax.toString() + " V")
+                ipmax.setText(helper.circuit.Imax.toString() + " A")
+            }
         }
 
 
+        var toggle = binding.toggle
+
+        toggle.setOnClickListener {
+            vm.toggleToggle()
+            if(vm.getToggle()){
+                toggle.setText("TEMP")
+            } else{
+                toggle.setText("ILLU")
+            }
+            clrBtns()
+        }
+
+
+        clrBtns()
+        this.markButtons(vm.getFX(),vm.getSX(),vm.getFY(),vm.getSY(),vm.getCnter())
 
         return root
     }
 
 
-    fun modCircuit(firstX:Int, secondX:Int, firstY:Int, secondY:Int, counter:Int){
+    fun modCircuit(firstX:Int, secondX:Int, firstY:Int, secondY:Int){
         var a:Int=0
         var b:Int=0
         var c:Int=0
         var d:Int=0
 
-        if(firstX > secondX){
+        if(firstX >= secondX){
             a = secondX
             b = firstX
         }
@@ -168,7 +190,7 @@ class circuitFragment : Fragment(),View.OnClickListener {
             b = secondX
         }
 
-        if(firstY > secondY){
+        if(firstY >= secondY){
             c  = secondY
             d = firstY
         }
@@ -176,11 +198,7 @@ class circuitFragment : Fragment(),View.OnClickListener {
             c = firstY
             d = secondY
         }
-        if(counter == 0||counter == 1){
-            helper.circuit.modify((a+1)/3,(b+1)/3,c,d,illu,temp, name)
-        } else {
-
-        }
+        helper.circuit.modify(a,b,c,d,illu,temp, name)
 
     }
 
@@ -188,19 +206,21 @@ class circuitFragment : Fragment(),View.OnClickListener {
 
     override fun onClick(v:View){
         var ind:Pair<Int,Int> = findBtn(v)
-        if(cnter == 0){
-            markButtons(firstX, secondX, firstY, secondY, cnter)
-            cnter++
-        } else if(cnter == 1){
-            firstX = ind.first
-            firstY = ind.second
-            markButtons(firstX, secondX, firstY, secondY, cnter)
-            cnter++
-        } else if(cnter == 2){
-            secondX = ind.first
-            secondY = ind.second
-            markButtons(firstX, secondX, firstY, secondY, cnter)
-            cnter=0
+        if(vm.getCnter() == 0){
+            markButtons(vm.getFX(), vm.getSX(), vm.getFY(), vm.getSY(), vm.getCnter())
+            vm.incCnter()
+        } else if(vm.getCnter() == 1){
+            vm.setFX(ind.first)
+            vm.setFY(ind.second)
+            vm.setSX(ind.first)
+            vm.setSY(ind.second)
+            markButtons(vm.getFX(), vm.getSX(), vm.getFY(), vm.getSY(), vm.getCnter())
+            vm.incCnter()
+        } else if(vm.getCnter() == 2){
+            vm.setSX(ind.first)
+            vm.setSY(ind.second)
+            markButtons(vm.getFX(), vm.getSX(), vm.getFY(), vm.getSY(), vm.getCnter())
+            vm.resCnter()
         }
 
 
@@ -209,13 +229,14 @@ class circuitFragment : Fragment(),View.OnClickListener {
 
     }
 
+
     fun markButtons(firstX:Int, secondX:Int, firstY:Int, secondY:Int, counter:Int){
         var a:Int=0
         var b:Int=0
         var c:Int=0
         var d:Int=0
 
-        if(firstX > secondX){
+        if(firstX >= secondX){
             a = secondX
             b = firstX
         }
@@ -224,7 +245,7 @@ class circuitFragment : Fragment(),View.OnClickListener {
             b = secondX
         }
 
-        if(firstY > secondY){
+        if(firstY >= secondY){
             c  = secondY
             d = firstY
         }
@@ -233,19 +254,14 @@ class circuitFragment : Fragment(),View.OnClickListener {
             d = secondY
         }
 
-        if( counter == 0 ){
+        if( vm.getCnter() == 0 ){
             for(row in helper.buttons){
                 for(btn in row){
                     btn.imageAlpha = 255
                 }
             }
         }
-        if(counter == 1){
-            var hpa = helper.buttons.get(firstX)
-            var btn = hpa.get(firstY)
-            btn.imageAlpha = 125
-        }
-        if(counter ==2){
+        if(vm.getCnter() ==1 || vm.getCnter() == 2){
             for(index in a until b+1){
                 var hpa = helper.buttons.get(index)
                 for(xedni in c until d+1){
@@ -259,32 +275,35 @@ class circuitFragment : Fragment(),View.OnClickListener {
 
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putInt("firstX", firstX)
-        outState.putInt("firstY", firstY)
-        outState.putInt("secondX", secondX)
-        outState.putInt("firstX", secondY)
-        outState.putDouble("uoc", uoc)
-        outState.putDouble("isc", isc)
-        outState.putDouble("umax", umax)
-        outState.putDouble("imax", imax)
-        outState.putDouble("pmax", pmax)
-        outState.putDouble("res", res)
+    fun clrBtns(){
+        var matrix:ArrayList<ArrayList<Int>> = ArrayList()
+        if(vm.getToggle()){
+            matrix = vm.getTemp()
+        } else {
+            matrix = vm.getIllu()
+        }
+        for(row in helper.buttons){
+
+            for(col in row){
+                var color:Int = matrix.get(helper.buttons.indexOf(row)).get(row.indexOf(col))
+                if(vm.getCells().get(helper.buttons.indexOf(row)).get(row.indexOf(col)) == "zeros."){
+                    col.setColorFilter(Color.argb(255,128,128,128))
+                }
+                else if(vm.getToggle()){
+                    col.setColorFilter(Color.argb(255,0,255,color))
+                } else {
+                    col.setColorFilter(Color.argb(255,255,color,0))
+                }
+
+            }
+
+        }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
-    override fun onViewStateRestored(savedInstanceState: Bundle?) {
-        super.onViewStateRestored(savedInstanceState)
-    }
+
+
 
 
 

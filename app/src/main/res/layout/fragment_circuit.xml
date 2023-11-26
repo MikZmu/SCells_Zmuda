@@ -10,7 +10,7 @@
         android:id="@+id/fc"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@color/light_gray"
+        android:background="@color/black"
         android:fillViewport="true"
         android:tag="sv"
         app:layout_constraintBottom_toTopOf="@id/bottom"
@@ -32,17 +32,20 @@
             <include
                 android:id="@+id/c0"
                 layout="@layout/column"
-                android:tag="c0"></include>
+                android:tag="c0"
+                android:padding = "1dp"></include>
 
             <include
                 android:id="@+id/c1"
                 layout="@layout/column"
-                android:tag="c1"></include>
+                android:tag="c1"
+                android:padding = "1dp"></include>
 
             <include
                 android:id="@+id/c2"
                 layout="@layout/column"
-                android:tag="c2"></include>
+                android:tag="c2"
+                android:padding = "1dp"></include>
 
 
         </LinearLayout>
@@ -60,17 +63,20 @@
             <include
                 android:id="@+id/c3"
                 layout="@layout/column"
-                android:tag="c3"></include>
+                android:tag="c3"
+                android:padding = "1dp"></include>
 
             <include
                 android:id="@+id/c4"
                 layout="@layout/column"
-                android:tag="c4"></include>
+                android:tag="c4"
+                android:padding = "1dp"></include>
 
             <include
                 android:id="@+id/c5"
                 layout="@layout/column"
-                android:tag="c5"></include>
+                android:tag="c5"
+                android:padding = "1dp"></include>
 
 
         </LinearLayout>
@@ -88,17 +94,20 @@
             <include
                 android:id="@+id/c6"
                 layout="@layout/column"
-                android:tag="c6"></include>
+                android:tag="c6"
+                android:padding = "1dp"></include>
 
             <include
                 android:id="@+id/c7"
                 layout="@layout/column"
-                android:tag="c7"></include>
+                android:tag="c7"
+                android:padding = "1dp"></include>
 
             <include
                 android:id="@+id/c8"
                 layout="@layout/column"
-                android:tag="c8"></include>
+                android:tag="c8"
+                android:padding = "1dp"></include>
 
 
         </LinearLayout>
@@ -125,7 +134,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.197"
-            android:textSize="25dp"></TextView>
+            android:textSize="25dp"
+            ></TextView>
 
         <TextView
             android:id="@+id/textView2"
@@ -178,29 +188,223 @@
 
         <ListView
             android:id="@+id/cells"
+            android:layout_width="138dp"
+            android:layout_height="87dp"
+            android:background="@color/black"
             android:listSelector="@color/dark_gray"
-            android:layout_width="135dp"
-            android:layout_height="64dp"
-            android:background="@color/light_gray"
             app:layout_constraintBottom_toBottomOf="@+id/temperature"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.384"
+            app:layout_constraintHorizontal_bias="0.304"
             app:layout_constraintStart_toEndOf="@+id/temperature"
             app:layout_constraintTop_toTopOf="@+id/illumination"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="0.727">
 
         </ListView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@id/right"
         android:layout_width="75dp"
         android:layout_height="0dp"
+        android:background="@color/dark_gray"
+        app:layout_constraintBottom_toTopOf="@id/bottom"
         app:layout_constraintRight_toRightOf="@id/topl"
         app:layout_constraintTop_toTopOf="@id/topl"
-        app:layout_constraintBottom_toTopOf="@id/bottom"
-        android:background="@color/dark_gray"
-        android:id="@id/right">
+        app:layout_constraintVertical_bias="0.0">
+
+        <TextView
+            android:id="@+id/uoc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Uoc = "
+            android:textColor="@color/orange"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.028">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/uocval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/uoc"
+            app:layout_constraintStart_toStartOf="@+id/uoc"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/yellow"
+            android:text="lolo"
+            android:layout_marginTop="10dp"
+            android:maxLength="4">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/isc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+            android:text="Isc = "
+            android:textColor="@color/orange"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/uoc">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/iscval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/uoc"
+            app:layout_constraintTop_toBottomOf="@id/isc"
+            android:textStyle="bold"
+            android:textColor="@color/yellow"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:text="lolo"
+            android:maxLength="4">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/pmax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Pmax = "
+            android:textColor="@color/orange"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/uoc"
+            app:layout_constraintTop_toBottomOf="@+id/isc">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pmaxval"
+            app:layout_constraintTop_toBottomOf="@id/pmax"
+            app:layout_constraintStart_toStartOf="@+id/uoc"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:textColor="@color/yellow"
+            android:layout_marginTop="10dp"
+            android:text="lolo"
+            android:maxLength="4">
+
+        </TextView>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FF = "
+            android:textColor="@color/orange"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:id="@+id/ff"
+            android:layout_marginTop="40dp"
+            app:layout_constraintStart_toStartOf="@id/uoc"
+            app:layout_constraintTop_toBottomOf="@id/pmax">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lolo"
+            android:textStyle="bold"
+            android:textColor="@color/yellow"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="@+id/uoc"
+            app:layout_constraintTop_toBottomOf="@+id/ff"
+            android:id="@+id/ffval"
+            android:maxLength="4">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ipmax = "
+            android:id="@id/imax"
+            app:layout_constraintStart_toStartOf="@id/uoc"
+            app:layout_constraintTop_toBottomOf="@id/ff"
+            android:textColor="@color/orange"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/ipmaxval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lolo"
+            android:textColor="@color/yellow"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/imax"
+            app:layout_constraintStart_toStartOf="@+id/uoc"
+            android:layout_marginTop="10dp"
+            android:maxLength="4">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Upmax = "
+            android:id="@id/umax"
+            app:layout_constraintStart_toStartOf="@id/uoc"
+            app:layout_constraintTop_toBottomOf="@id/imax"
+            android:layout_marginTop="40dp"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:textSize="15dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="lolo"
+            android:textStyle="bold"
+            android:textColor="@color/yellow"
+            android:textSize="15dp"
+            app:layout_constraintTop_toBottomOf="@id/umax"
+            app:layout_constraintStart_toStartOf="@id/uoc"
+            android:layout_marginTop="10dp"
+            android:id="@+id/upmaxval"
+            android:maxLength="4">
+
+        </TextView>
+
+
+        <Button
+            android:id="@+id/toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:background="@color/orange"
+            android:text="ILLU"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/right"
+            app:layout_constraintTop_toBottomOf="@id/upmaxval">
+
+        </Button>
 
         <Button
             android:id="@+id/button"
@@ -218,8 +422,60 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.972" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
 
+            android:id="@+id/eightyPercent"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.781"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toggle" />
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/orange"
+            android:id="@+id/sixtyPercent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/eightyPercent"
+            app:layout_constraintTop_toBottomOf="@+id/eightyPercent" />
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/sixtyPercent"
+            app:layout_constraintStart_toStartOf="@+id/sixtyPercent"
+            app:layout_constraintTop_toBottomOf="@+id/sixtyPercent"
+            android:background="@color/orange"
+            android:id="@+id/fourtyPercent"/>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/orange"
+            app:layout_constraintRight_toRightOf="@id/fourtyPercent"
+            app:layout_constraintTop_toBottomOf="@id/fourtyPercent"
+            app:layout_constraintLeft_toLeftOf="@id/fourtyPercent"
+            android:id="@+id/twentyPercent">
+        </Button>
+
+        <Button
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/orange"
+            android:id="@+id/zeroPercent"
+            app:layout_constraintTop_toBottomOf="@id/twentyPercent"
+            app:layout_constraintLeft_toLeftOf="@id/twentyPercent">
+
+        </Button>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
