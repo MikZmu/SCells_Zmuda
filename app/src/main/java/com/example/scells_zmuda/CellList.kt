@@ -74,7 +74,8 @@ class CellList (val context: Context, var cellList:ArrayList<MatrixCell> = getDa
 
                         }
 
-
+                        returnXArray.sort()
+                        returnYArray.sortDescending()
                         returnList.add(MatrixCell(i.removeSuffix("csv"),returnXArray, returnYArray,startingTemp,startingIllu,v_temp_coe,i_temp_coe,i_illu_coe))
                     }
 
@@ -123,7 +124,8 @@ class CellList (val context: Context, var cellList:ArrayList<MatrixCell> = getDa
 
                         }
 
-
+                        returnXArray.sort()
+                        returnYArray.sortDescending()
                         returnList.add(MatrixCell(i.removeSuffix("csv"),returnXArray, returnYArray,startingTemp,startingIllu,v_temp_coe,i_temp_coe,i_illu_coe))
                     }
 

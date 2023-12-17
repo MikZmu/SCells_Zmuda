@@ -176,7 +176,7 @@ class circuitFragmentViewModel : ViewModel() {
             val row = this.illuMatrix.get(i)
             var j = 0
             while(j < row.size){
-                returnList[i].add((illuMatrix[i][j]/1500*255).toInt())
+                returnList[i].add(((illuMatrix[i][j]-150)/1500*255).toInt())
                 j++
             }
             i++
@@ -196,7 +196,7 @@ class circuitFragmentViewModel : ViewModel() {
             var row = this.tempMatrix.get(i)
             var j = 0
             while(j < row.size){
-                returnList[i].add((((tempMatrix[i][j])+50)/150*255).toInt())
+                returnList[i].add((((tempMatrix[i][j])+25)/150*255).toInt())
                 j++
             }
             i++

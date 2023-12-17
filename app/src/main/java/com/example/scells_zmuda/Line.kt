@@ -89,7 +89,7 @@ class Line() {
         var min:Double = 99999.0
         if(nonZero){
             for(i in this.cells){
-                if(i.yArray[0]<min){
+                if(i.yArray[0]<min && i.name!="zeros."){
                     min = i.yArray[0]
                 }
             }
@@ -243,7 +243,9 @@ fun normaliseNormalYFun():ArrayList<Double>{
     val smallestfun = this.cells.get(shortestYindex())
     val smallestnorm = MatrixCell.normaliseYFun(smallestfun.normalisedXArray, smallestfun.xGridArray,this.minGridY)
     while (i<returnArray.size){
-        returnArray[returnArray.size-i-1] = smallestnorm.getOrElse(smallestnorm.size-i-1){smallestnorm.max()}
+        if(returnArray[returnArray.size-i-1] > smallestnorm.getOrElse(smallestnorm.size-i-1){smallestnorm.max()}){
+            returnArray[returnArray.size-i-1] = smallestnorm.getOrElse(smallestnorm.size-i-1){smallestnorm.max()}
+        }
         i++
     }
     returnArray.sortDescending()

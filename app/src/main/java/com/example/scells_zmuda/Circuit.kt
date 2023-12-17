@@ -135,6 +135,9 @@ class Circuit() {
 
     fun getminX():Double{
         var minX = 99999.0
+        if(zeroCirc()==false){
+            return 0.0
+        }
         for(i in this.lines){
             if(i.nonZero){
                 if(i.sum[i.sum.size-1] < minX){

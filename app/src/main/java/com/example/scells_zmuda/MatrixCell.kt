@@ -114,16 +114,15 @@ class MatrixCell(val name: String,
         }
         fun normaliseXFun(baseArray:ArrayList<Double>, gridBaseArray:ArrayList<Double>, processedArray:ArrayList<Double>):ArrayList<Double>{
             var value:Double
-            var arrayNormalised:ArrayList<Double> = ArrayList()
-            var hlpArray:ArrayList<Double> = ArrayList()
+            val arrayNormalised:ArrayList<Double> = ArrayList()
             processedArray.add(processedArray.max())
             for(x in gridBaseArray){
-                var lesser = lesserXVal(x, baseArray)
-                var greater = greaterXval(x, baseArray)
-                var lesserIndex = baseArray.indexOf(lesser)
-                var greaterIndex = baseArray.indexOf(greater)
-                var a = (processedArray.get(greaterIndex) - processedArray.getOrElse(lesserIndex){0}.toDouble()) / (greater - lesser)
-                var b = processedArray.getOrElse(lesserIndex){0.0} - a*lesser
+                val lesser = lesserXVal(x, baseArray)
+                val greater = greaterXval(x, baseArray)
+                val lesserIndex = baseArray.indexOf(lesser)
+                val greaterIndex = baseArray.indexOf(greater)
+                val a = (processedArray.get(greaterIndex) - processedArray.getOrElse(lesserIndex){0}.toDouble()) / (greater - lesser)
+                val b = processedArray.getOrElse(lesserIndex){0.0} - a*lesser
                 value = a*lesser+b
                 if(value.isNaN()){
                     value = processedArray.max()
@@ -218,17 +217,17 @@ class MatrixCell(val name: String,
 
         fun stepCalc(value:Double):Double{
             if(value > 40){
-                return 0.1
+                return 0.2
             } else if(value > 20){
-                return 0.07
+                return 0.14
             } else if(value>10){
-                return 0.04
+                return 0.08
             } else if(value>5){
-                return 0.02
+                return 0.04
             } else if(value >2){
-                return 0.01
+                return 0.02
             } else {
-                return 0.005
+                return 0.01
             }
 
 

@@ -29,13 +29,8 @@ class CircuitFragment : Fragment(),View.OnClickListener {
     // onDestroyView.
     val vm: circuitFragmentViewModel by activityViewModels()
     private val binding get() = _binding!!
-    var firstX:Int = 0;
-    var firstY:Int = 0;
-    var secondX:Int = 0;
-    var secondY:Int = 0;
     var illu:Double = 0.0;
     var res:Double=0.0
-    var cnter:Int=0;
     var name:String = "zeros"
     var temp:Double = 0.0
 
@@ -130,11 +125,34 @@ class CircuitFragment : Fragment(),View.OnClickListener {
 
         var cells:ListView = binding.cells
         cells.choiceMode = ListView.CHOICE_MODE_SINGLE
+        fun modList():ArrayList<String>{
+            var list = Singleton.cellList.listCells()
+            var cls = vm.getCells()
+            var preserve:String = ""
+            for(i in cls){
+                for(j in i){
+                    if (j != "zeros."){
+                        preserve = j
+                    }
+                }
+            }
+
+            if(preserve.length!=0){
+                val iterator = list.iterator()
+                while (iterator.hasNext()){
+                    val cl = iterator.next()
+                    if(cl != "zeros."  && cl != preserve){
+                        iterator.remove()
+                    }
+                }
+            }
+            return list
+        }
         cells.setOnItemClickListener{adapterView: AdapterView<*>, view2: View, i: Int, l: Long ->
             name = cells.getItemAtPosition(i).toString()
         }
         val arrayAdapter = ArrayAdapter(requireContext(),
-            android.R.layout.simple_list_item_single_choice,Singleton.cellList.listCells())
+            android.R.layout.simple_list_item_single_choice,modList())
         cells.adapter = arrayAdapter
         cells.setItemChecked(0, true)
         name = cells.getItemAtPosition(0).toString()
@@ -145,19 +163,19 @@ class CircuitFragment : Fragment(),View.OnClickListener {
         var upmax = binding.upmaxval
         var ipmax = binding.ipmaxval
         val uoctext = binding.uoc
-        uoctext.text = (CircuitFragment.subscriptSpanner("UOC[V]=",0,1,3))
+        uoctext.text = (CircuitFragment.subscriptSpanner("UOC[V]≈",0,1,3))
         val isctext = binding.isc
-        isctext.text = (CircuitFragment.subscriptSpanner("ISC[A]=",0,1,3))
+        isctext.text = (CircuitFragment.subscriptSpanner("ISC[A]≈",0,1,3))
         val pmaxtext = binding.pmax
-        pmaxtext.text = (CircuitFragment.subscriptSpanner("PMAX[W]=",0,1,4))
+        pmaxtext.text = (CircuitFragment.subscriptSpanner("PMAX[W]≈",0,1,4))
         val umaxtext = binding.umax
-        umaxtext.text = (CircuitFragment.subscriptSpanner("UPMAX[V]=",0,1,5))
+        umaxtext.text = (CircuitFragment.subscriptSpanner("UPMAX[V]≈",0,1,5))
         val imaxtext = binding.imax
-        imaxtext.text = (CircuitFragment.subscriptSpanner("IPMAX[A]=",0,1,5))
+        imaxtext.text = (CircuitFragment.subscriptSpanner("IPMAX[A]≈",0,1,5))
         val temptext = binding.temptext
-        temptext.text = (CircuitFragment.subscriptSpanner("Temperature[Co]=",1,13,14))
+        temptext.text = (CircuitFragment.subscriptSpanner("Temperature[Co]≈",1,13,14))
         val irrtext = binding.irrText
-        irrtext.text = (CircuitFragment.subscriptSpanner("Irradiance[W/m2]=",1,14,15))
+        irrtext.text = (CircuitFragment.subscriptSpanner("Irradiance[W/m2]≈",1,14,15))
 
         uoc.setText(Singleton.circuit.UocMin.toString() + " V")
         isc.setText(Singleton.circuit.IscMin.toString()+ " A")
@@ -167,7 +185,7 @@ class CircuitFragment : Fragment(),View.OnClickListener {
         ipmax.setText(Singleton.circuit.ImaxMin.toString() + " A")
 
         button.setOnClickListener {
-            if(vm.getCnter() == 2 || vm.getCnter() == 0 && inputCheck()){
+            if((vm.getCnter() == 2 || vm.getCnter() == 0) && inputCheck()){
                 this.temp = tempFLD.text.toString().toDouble()
                 this.illu = illuFLD.text.toString().toDouble()
                 modCircuit(vm.getFX(),vm.getSX(),vm.getFY(),vm.getSY())
@@ -179,6 +197,11 @@ class CircuitFragment : Fragment(),View.OnClickListener {
                 pmax.setText(Singleton.circuit.PmaxMin.toString() + " W")
                 upmax.setText(Singleton.circuit.UmaxMin.toString() + " V")
                 ipmax.setText(Singleton.circuit.ImaxMin.toString() + " A")
+                val arrayAdapter = ArrayAdapter(requireContext(),
+                    android.R.layout.simple_list_item_single_choice,modList())
+                cells.adapter = arrayAdapter
+                cells.setItemChecked(0, true)
+                name = cells.getItemAtPosition(0).toString()
             }
         }
 
@@ -211,12 +234,9 @@ class CircuitFragment : Fragment(),View.OnClickListener {
             var max = binding.max
             max.text = "1500"
             var min = binding.min
-            min.text = "0"
+            min.text = "150"
         }
-
-
-        toggle.setOnClickListener {
-            vm.toggleToggle()
+        fun toggleHandle(){
             if(vm.getToggle()){
                 toggle.setText("IRRAD")
             } else{
@@ -233,7 +253,7 @@ class CircuitFragment : Fragment(),View.OnClickListener {
                 var max = binding.max
                 max.text = "1500"
                 var min = binding.min
-                min.text = "0"
+                min.text = "150"
             } else {
                 eighty.setColorFilter(Color.argb(255,255,230,0))
                 sixty.setColorFilter(Color.argb(255,255,180,0))
@@ -242,16 +262,20 @@ class CircuitFragment : Fragment(),View.OnClickListener {
                 zero.setColorFilter(Color.argb(255,255,30,0))
 
                 var max = binding.max
-                max.text = "150"
+                max.text = "125"
                 var min = binding.min
                 min.text = "-25"
 
             }
             clrBtns()
         }
+        toggle.setOnClickListener {
+            vm.toggleToggle()
+            toggleHandle()
+        }
 
 
-        clrBtns()
+        toggleHandle()
         if(vm.getCnter() == 0){
             vm.incCnter()
             vm.incCnter()
@@ -322,12 +346,9 @@ class CircuitFragment : Fragment(),View.OnClickListener {
             markButtons(vm.getFX(), vm.getSX(), vm.getFY(), vm.getSY(), vm.getCnter())
             vm.resCnter()
         }
-
-
-
-
-
     }
+
+
 
 
     fun markButtons(firstX:Int, secondX:Int, firstY:Int, secondY:Int, counter:Int){

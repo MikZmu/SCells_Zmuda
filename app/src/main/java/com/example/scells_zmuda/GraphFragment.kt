@@ -54,21 +54,21 @@ class GraphFragment : Fragment() {
         var optres:TextView = binding.opt
         var smp = binding.potPower
         val uoctext = binding.uoctext
-        uoctext.text = (CircuitFragment.subscriptSpanner("UOC[V]=",0,1,3))
+        uoctext.text = (CircuitFragment.subscriptSpanner("UOC[V]≈",0,1,3))
         val isctext = binding.isctext
-        isctext.text = (CircuitFragment.subscriptSpanner("ISC[A]=",0,1,3))
+        isctext.text = (CircuitFragment.subscriptSpanner("ISC[A]≈",0,1,3))
         val pmaxtext = binding.pmaxtext
-        pmaxtext.text = (CircuitFragment.subscriptSpanner("PMAX[W]=",0,1,4))
+        pmaxtext.text = (CircuitFragment.subscriptSpanner("PMAX[W]≈",0,1,4))
         val upmaxtext = binding.upmaxtext
-        upmaxtext.text = (CircuitFragment.subscriptSpanner("UPMAX[V]=",0,1,5))
+        upmaxtext.text = (CircuitFragment.subscriptSpanner("UPMAX[V]≈",0,1,5))
         val ipmaxtext = binding.ipmaxtext
-        ipmaxtext.text = (CircuitFragment.subscriptSpanner("IPMAX[A]=",0,1,5))
+        ipmaxtext.text = (CircuitFragment.subscriptSpanner("IPMAX[A]≈",0,1,5))
         val poptext = binding.poptext
-        poptext.text = (CircuitFragment.subscriptSpanner("POP[W]=",0,1,3))
+        poptext.text = (CircuitFragment.subscriptSpanner("POP[W]≈",0,1,3))
         val uoptext = binding.uoptext
-        uoptext.text = (CircuitFragment.subscriptSpanner("UOP[V]=",0,1,3))
+        uoptext.text = (CircuitFragment.subscriptSpanner("UOP[V]≈",0,1,3))
         val ioptext = binding.ioptext
-        ioptext.text = (CircuitFragment.subscriptSpanner("IOP[A]=",0,1,3))
+        ioptext.text = (CircuitFragment.subscriptSpanner("IOP[A]≈",0,1,3))
 
         var currentSeries:LineGraphSeries<DataPoint> = Singleton.circuit.mindataPoints
         currentSeries.thickness = 3
@@ -117,9 +117,12 @@ class GraphFragment : Fragment() {
         maskYP.add(0)
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
-        graph.legendRenderer.isVisible = true
-        graph.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
         graph.gridLabelRenderer.verticalAxisTitle = "I[A]"
+        graph.gridLabelRenderer.verticalAxisTitleColor = android.graphics.Color.YELLOW
+        graph.gridLabelRenderer.horizontalAxisTitleColor = android.graphics.Color.YELLOW
+        graph.gridLabelRenderer.horizontalLabelsColor = android.graphics.Color.YELLOW
+        graph.gridLabelRenderer.verticalLabelsColor = android.graphics.Color.YELLOW
+        graph.gridLabelRenderer.verticalLabelsSecondScaleColor = android.graphics.Color.YELLOW
         graph.gridLabelRenderer.horizontalAxisTitle = "U[V]"
         graph.secondScale.verticalAxisTitle = "P[W]"
         scr.isChecked = true
@@ -134,6 +137,9 @@ class GraphFragment : Fragment() {
                     }
                 }
             }
+            if(highest == 0.0){
+                return 1.0
+            }
             return (highest * 1.1)
         }
 
@@ -145,6 +151,9 @@ class GraphFragment : Fragment() {
                         highest = maxSeries[i+2]
                     }
                 }
+            }
+            if(highest == 0.0){
+                return 1.0
             }
             return (highest * 1.1)
         }
@@ -158,6 +167,9 @@ class GraphFragment : Fragment() {
                     }
                 }
             }
+            if(highest == 0.0){
+                return 0.0
+            }
             return (highest * 1.1)
         }
 
@@ -170,7 +182,9 @@ class GraphFragment : Fragment() {
                 maskYC[0] = 1
                 graph.addSeries(currentSeries)
             } else{
-                maskX[0] = 0
+                if(spw.isChecked == false){
+                    maskX[0] = 0
+                }
                 maskYC[0] = 0
                 graph.removeSeries(currentSeries)
             }
@@ -191,7 +205,9 @@ class GraphFragment : Fragment() {
                 maskYC[1] = 1
                 graph.addSeries(idealSeries)
             } else{
-                maskX[1] = 0
+                if(smp.isChecked == false){
+                    maskX[1] = 0
+                }
                 maskYC[1] = 0
                 graph.removeSeries(idealSeries)
             }
@@ -210,7 +226,9 @@ class GraphFragment : Fragment() {
                 maskYP[1] = 1
                 graph.secondScale.addSeries(maxPowerSeries)
             } else{
-                maskX[1] = 0
+                if(sls.isChecked == false){
+                    maskX[1] = 0
+                }
                 maskYP[1] = 0
                 graph.secondScale.removeSeries(maxPowerSeries)
             }
@@ -231,7 +249,9 @@ class GraphFragment : Fragment() {
                 maskYP[0] = 1
                 graph.secondScale.addSeries(powerSeries)
             } else{
-                maskX[0] = 0
+                if(scr.isChecked == false){
+                    maskX[0] = 0
+                }
                 maskYP[0] = 0
                 graph.secondScale.removeSeries(powerSeries)
             }
@@ -244,6 +264,7 @@ class GraphFragment : Fragment() {
         spw.setOnClickListener{
             spwHandle()
         }
+
 
 
 
@@ -267,7 +288,7 @@ class GraphFragment : Fragment() {
         Imax.setText((round(Singleton.circuit.ImaxMin*100)/100).toString())
         ff.setText((round(Singleton.circuit.FFMin*100)/100).toString())
         optres.setText(Circuit.round(2, (Singleton.circuit.UmaxMin)/(Singleton.circuit.ImaxMin)).toString())
-
+        res.setText(Singleton.circuit.charResMin.toString())
 
         scrHandle()
 

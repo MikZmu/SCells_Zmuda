@@ -92,9 +92,11 @@
             android:text="Show Pot Curr."
             android:textColor="@color/teal_200"
             android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold"
+            ></TextView>
 
         <com.google.android.material.textfield.TextInputEditText
+            android:maxLength="4"
             android:background="@color/light_gray"
             android:layout_row="0"
             android:layout_height="0dp"
@@ -319,7 +321,7 @@
 
         <TextView
             android:id="@+id/ffmaxtext"
-            android:text="FF = "
+            android:text="FF ≈ "
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:textSize="16dp"
@@ -377,7 +379,7 @@
 
         <TextView
             android:id="@+id/charloadtext"
-            android:text="Char.Load[Ohm]="
+            android:text="Char.Load[Ohm]≈"
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:layout_row="4"
