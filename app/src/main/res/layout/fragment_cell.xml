@@ -5,7 +5,7 @@
     android:id="@+id/cl"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cellFragment"
+    tools:context=".CellFragment"
     android:orientation="vertical"
     android:background="@color/black">
 
@@ -210,11 +210,12 @@
             android:layout_row="0"
             android:layout_rowWeight="1"
             android:layout_column="0"
-            android:layout_columnWeight="1"
+            android:layout_columnWeight="2"
             android:text="Uoc[V] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -225,8 +226,9 @@
             android:layout_columnWeight="1"
             android:text="Isc[A] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -237,8 +239,9 @@
             android:layout_columnWeight="1"
             android:text="Pmax[W] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -249,8 +252,9 @@
             android:layout_columnWeight="1"
             android:text="Upmax[V] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -261,8 +265,9 @@
             android:layout_columnWeight="1"
             android:text="Ipmax[A] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:id="@+id/uoc"
@@ -273,8 +278,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_gravity="left"></TextView>
 
         <TextView
             android:id="@+id/isc"
@@ -285,8 +291,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 
@@ -300,8 +307,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 
@@ -314,8 +322,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 
@@ -328,8 +337,9 @@
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 
@@ -342,8 +352,9 @@
             android:layout_columnWeight="1"
             android:text="FF = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -354,8 +365,9 @@
             android:layout_columnWeight="1"
             android:text="Uop[V] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -366,8 +378,9 @@
             android:layout_columnWeight="1"
             android:text="Iop[A] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right"></TextView>
 
         <TextView
             android:layout_width="0dp"
@@ -378,8 +391,9 @@
             android:layout_columnWeight="1"
             android:text="Pop[W] = "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right">
 
         </TextView>
 
@@ -389,11 +403,12 @@
             android:layout_row="4"
             android:layout_rowWeight="1"
             android:layout_column="2"
-            android:layout_columnWeight="1"
-            android:text="Opt. Load = "
+            android:layout_columnWeight="2"
+            android:text="Char.Load[Ohm]= "
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="right">
 
         </TextView>
 
@@ -406,8 +421,9 @@
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 
@@ -420,8 +436,9 @@
             android:textColor="@color/orange"
             android:layout_column="3"
             android:layout_columnWeight="1"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left"></TextView>
 
         <TextView
             android:id="@+id/uop"
@@ -434,8 +451,9 @@
             android:layout_columnWeight="1"
             android:width="0dp"
             android:height="0dp"
-            android:textSize="18dp"
-            android:textStyle="bold"></TextView>
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left"></TextView>
 
         <TextView
             android:id="@+id/iop"
@@ -446,8 +464,9 @@
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 
@@ -460,8 +479,9 @@
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:textColor="@color/orange"
-            android:textSize="18dp"
-            android:textStyle="bold">
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:gravity="left">
 
         </TextView>
 

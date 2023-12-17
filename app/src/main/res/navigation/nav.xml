@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/circuitFragment"
-        android:name="com.example.scells_zmuda.circuitFragment"
+        android:name="com.example.scells_zmuda.CircuitFragment"
         android:label="fragment_circuit"
         tools:layout="@layout/fragment_circuit" />
     <fragment
         android:id="@+id/cellFragment"
-        android:name="com.example.scells_zmuda.cellFragment"
+        android:name="com.example.scells_zmuda.CellFragment"
         android:label="fragment_cell"
         tools:layout="@layout/fragment_cell" />
     <fragment
         android:id="@+id/graphFragment"
-        android:name="com.example.scells_zmuda.graphFragment"
+        android:name="com.example.scells_zmuda.GraphFragment"
         android:label="fragment_graph"
         tools:layout="@layout/fragment_graph" />
 </navigation>

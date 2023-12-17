@@ -13,11 +13,11 @@
         android:background="@color/black"
         android:fillViewport="true"
         android:tag="sv"
-        app:layout_constraintBottom_toTopOf="@id/bottom"
+        app:layout_constraintTop_toBottomOf="@id/bottom"
         app:layout_constraintLeft_toLeftOf="@id/topl"
         app:layout_constraintRight_toLeftOf="@id/right"
-        app:layout_constraintTop_toTopOf="@id/topl"
-        tools:context="circuitFragment">
+        app:layout_constraintBottom_toBottomOf="@id/topl"
+        tools:context="CircuitFragment">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -118,15 +118,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/topl"
+        app:layout_constraintTop_toTopOf="@id/topl"
         android:background="@color/dark_gray"
         android:id="@id/bottom">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/irrText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Illumination:"
+            android:text="Irradiance[W/m2]="
             android:textColor="@color/orange"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,23 +134,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.197"
-            android:textSize="25dp"
+            android:textSize="17dp"
+            android:textStyle="bold"
             ></TextView>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/temptext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Temperature:"
-            android:textSize="25dp"
+            android:text="Temperature[C*]="
+            android:textSize="17dp"
             android:textColor="@color/orange"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="@id/irrText"
+            app:layout_constraintTop_toBottomOf="@id/irrText"
             android:singleLine="true"
-            app:layout_constraintVertical_bias="0.679">
+            android:textStyle="bold">
 
         </TextView>
 
@@ -161,15 +160,12 @@
             android:layout_height="30dp"
             android:layout_marginBottom="5dp"
             android:background="@color/light_gray"
-            android:textColor="@color/orange"
-            app:layout_constraintBottom_toTopOf="@+id/temperature"
-            app:layout_constraintEnd_toEndOf="@+id/temperature"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/temperature"
-            app:layout_constraintTop_toTopOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.0"
+            android:textColor="@color/black"
+            app:layout_constraintLeft_toRightOf="@+id/irrText"
+            app:layout_constraintTop_toTopOf="@+id/irrText"
             android:singleLine="true"
-            android:maxLength="4"/>
+            android:maxLength="4"
+            android:textStyle="bold"/>
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/temperature"
@@ -177,333 +173,323 @@
             android:text="25"
             android:layout_height="30dp"
             android:background="@color/light_gray"
-            android:textColor="@color/orange"
-            app:layout_constraintBottom_toBottomOf="@+id/textView2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.056"
-            app:layout_constraintStart_toEndOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.685"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/temptext"
+            app:layout_constraintLeft_toRightOf="@id/temptext"
             android:maxLength="3"/>
 
         <ListView
             android:id="@+id/cells"
-            android:layout_width="138dp"
-            android:layout_height="87dp"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
             android:background="@color/black"
+            android:layout_marginHorizontal="15dp"
             android:listSelector="@color/dark_gray"
             app:layout_constraintBottom_toBottomOf="@+id/temperature"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.304"
-            app:layout_constraintStart_toEndOf="@+id/temperature"
-            app:layout_constraintTop_toTopOf="@+id/illumination"
-            app:layout_constraintVertical_bias="0.727">
+            app:layout_constraintEnd_toEndOf="@id/bottom"
+            app:layout_constraintLeft_toRightOf="@+id/temperature"
+            app:layout_constraintTop_toTopOf="@+id/bottom"
+            app:layout_constraintTop_toBottomOf="@id/bottom">
 
         </ListView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@id/right"
         android:layout_width="75dp"
         android:layout_height="0dp"
         android:background="@color/dark_gray"
-        app:layout_constraintBottom_toTopOf="@id/bottom"
+        app:layout_constraintBottom_toBottomOf="@id/topl"
         app:layout_constraintRight_toRightOf="@id/topl"
-        app:layout_constraintTop_toTopOf="@id/topl"
+        app:layout_constraintTop_toBottomOf="@id/bottom"
         app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:id="@+id/uoc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Uoc = "
-            android:textColor="@color/orange"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.028">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/uocval"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/uoc"
-            app:layout_constraintStart_toStartOf="@+id/uoc"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="@color/yellow"
-            android:text="lolo"
-            android:layout_marginTop="10dp"
-            android:maxLength="4">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/isc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="40dp"
-            android:text="Isc = "
-            android:textColor="@color/orange"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/uoc">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/iscval"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/uoc"
-            app:layout_constraintTop_toBottomOf="@id/isc"
-            android:textStyle="bold"
-            android:textColor="@color/yellow"
-            android:textSize="15dp"
-            android:layout_marginTop="10dp"
-            android:text="lolo"
-            android:maxLength="4">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/pmax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Pmax = "
-            android:textColor="@color/orange"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@+id/uoc"
-            app:layout_constraintTop_toBottomOf="@+id/isc">
-
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/pmaxval"
-            app:layout_constraintTop_toBottomOf="@id/pmax"
-            app:layout_constraintStart_toStartOf="@+id/uoc"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:textColor="@color/yellow"
-            android:layout_marginTop="10dp"
-            android:text="lolo"
-            android:maxLength="4">
-
-        </TextView>
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FF = "
-            android:textColor="@color/orange"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:id="@+id/ff"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="@id/uoc"
-            app:layout_constraintTop_toBottomOf="@id/pmax">
-
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lolo"
-            android:textStyle="bold"
-            android:textColor="@color/yellow"
-            android:textSize="15dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="@+id/uoc"
-            app:layout_constraintTop_toBottomOf="@+id/ff"
-            android:id="@+id/ffval"
-            android:maxLength="4">
-
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ipmax = "
-            android:id="@id/imax"
-            app:layout_constraintStart_toStartOf="@id/uoc"
-            app:layout_constraintTop_toBottomOf="@id/ff"
-            android:textColor="@color/orange"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            android:layout_marginTop="40dp">
-
-        </TextView>
-
-        <TextView
-            android:id="@+id/ipmaxval"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lolo"
-            android:textColor="@color/yellow"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/imax"
-            app:layout_constraintStart_toStartOf="@+id/uoc"
-            android:layout_marginTop="10dp"
-            android:maxLength="4">
-
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upmax = "
-            android:id="@id/umax"
-            app:layout_constraintStart_toStartOf="@id/uoc"
-            app:layout_constraintTop_toBottomOf="@id/imax"
-            android:layout_marginTop="40dp"
-            android:textColor="@color/orange"
-            android:textStyle="bold"
-            android:textSize="15dp"></TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="lolo"
-            android:textStyle="bold"
-            android:textColor="@color/yellow"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/umax"
-            app:layout_constraintStart_toStartOf="@id/uoc"
-            android:layout_marginTop="10dp"
-            android:id="@+id/upmaxval"
-            android:maxLength="4">
-
-        </TextView>
-
-
-        <Button
-            android:id="@+id/toggle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:background="@color/orange"
-            android:text="ILLU"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="@id/right"
-            app:layout_constraintTop_toBottomOf="@id/upmaxval">
-
-        </Button>
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="62dp"
-            android:layout_height="41dp"
-            android:background="@color/orange"
-            android:text="Apply"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.461"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.972" />
-
         <LinearLayout
-            android:id="@+id/gama"
-            android:layout_width="20dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="28dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.82"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toggle"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <ImageButton
-
-                android:id="@+id/eightyPercent"
+            <GridLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:src="@drawable/cell_lightgray"/>
+                android:layout_height="100dp"
+                android:layout_gravity="right"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp">
 
-            <ImageButton
-                android:id="@+id/sixtyPercent"
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:text="max"
+                    android:id="@+id/max"
+                    android:textSize="15dp"
+                    android:textColor="@color/yellow"
+                    android:layout_row="0"
+                    android:layout_column="0"
+                    >
+                </TextView>
+
+                <ImageButton
+
+                    android:id="@+id/eightyPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/cell_lightgray"
+                    android:layout_column="1"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="0"
+                    android:background="@color/orange"/>
+
+                <ImageButton
+                    android:id="@+id/sixtyPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/light_gray"
+                    android:src="@drawable/cell_lightgray"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_row="1"
+                    android:layout_column="1"/>
+
+                <ImageButton
+                    android:id="@+id/fourtyPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/cell_lightgray"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="2"
+                    android:layout_column="1"
+                    />
+
+                <ImageButton
+                    android:id="@+id/twentyPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/orange"
+                    android:src="@drawable/cell_lightgray"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:layout_row="3"
+                    android:layout_column="1"/>
+
+                <ImageButton
+                    android:id="@+id/zeroPercent"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/orange"
+                    android:src="@drawable/cell_lightgray"
+                    android:layout_rowWeight="1"
+                    android:layout_columnWeight="1"
+                    android:layout_row="4"
+                    android:layout_column="1"
+                    >
+
+                </ImageButton>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="min"
+                    android:layout_columnWeight="1"
+                    android:layout_rowWeight="1"
+                    android:id="@+id/min"
+                    android:textColor="@color/yellow"
+                    android:layout_row="4"
+                    android:layout_column="0"
+                    >
+                </TextView>
+
+            </GridLayout>
+
+
+
+
+            <Button
+                android:id="@+id/button"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="40dp"
                 android:background="@color/orange"
-                android:src="@drawable/cell_lightgray"/>
+                android:text="Apply"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
 
-            <ImageButton
-                android:id="@+id/fourtyPercent"
+            <Button
+                android:id="@+id/toggle"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:src="@drawable/cell_lightgray"/>
-
-            <ImageButton
-                android:id="@+id/twentyPercent"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"
                 android:background="@color/orange"
-                android:src="@drawable/cell_lightgray"/>
+                android:text="IRRAD"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="15dp">
 
-            <ImageButton
-                android:id="@+id/zeroPercent"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/orange"
-                android:src="@drawable/cell_lightgray">
+            </Button>
 
-            </ImageButton>
+            <TextView
+                android:id="@+id/uoc"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Uoc[V]"
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/uocval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:text="uoc"
+                android:maxLength="4"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/isc"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Isc[A]"
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/iscval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:textSize="15dp"
+                android:text="isc"
+                android:maxLength="4"
+                android:layout_marginBottom="5dp">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/pmax"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Pmax[W]"
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pmaxval"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:text="lolo"
+                android:maxLength="4"
+>
+
+            </TextView>
+
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="FF = "
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:id="@+id/ff">
+
+            </TextView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ff"
+                android:textStyle="bold"
+                android:id="@+id/ffval"
+                android:textColor="@color/yellow"
+                android:textSize="15dp"
+                android:maxLength="4">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Ipmax[A]"
+                android:id="@id/imax"
+                android:textColor="@color/orange"
+                android:textSize="15dp"
+                android:textStyle="bold">
+
+            </TextView>
+
+            <TextView
+                android:id="@+id/ipmaxval"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lolo"
+                android:textColor="@color/yellow"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:maxLength="4">
+
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="Upmax[V]"
+                android:id="@id/umax"
+                android:textColor="@color/orange"
+                android:textStyle="bold"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="upmax"
+                android:textStyle="bold"
+                android:textColor="@color/yellow"
+                android:textSize="15dp"
+                android:id="@+id/upmaxval"
+                android:maxLength="4">
+
+            </TextView>
+
+
+
+
+
+
 
 
         </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="max"
-            android:id="@+id/max"
-            android:textSize="15dp"
-            android:textColor="@color/yellow"
-            app:layout_constraintRight_toLeftOf="@id/gama"
-            app:layout_constraintTop_toTopOf="@id/gama">
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="min"
-            android:id="@+id/min"
-            android:textSize="15dp"
-            android:textColor="@color/yellow"
-            app:layout_constraintRight_toLeftOf="@id/gama"
-            app:layout_constraintBottom_toBottomOf="@id/gama">
-        </TextView>
 
 
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 
 

@@ -1,21 +1,14 @@
 package com.example.solar_cells_v3
-import com.jjoe64.graphview.series.DataPoint
-import com.jjoe64.graphview.series.LineGraphSeries
-import kotlin.math.abs
 
 
-class Matrix_Cell(val name: String,
-                  val xArray:ArrayList<Double>,
-                  val yArray:ArrayList<Double>,
-                  val startingTemp:Double,
-                  val startingIllu:Double,
-                  val v_temp_coe:Double,
-                  val i_temp_coe:Double,
-                  val i_illu_coe:Double,
-                  val xGridArray:ArrayList<Double> = gridX(0.01,xArray.max()),
-                  val yGridArray: ArrayList<Double> = gridY(0.01, yArray.max()),
-                  val normalizedYArray:ArrayList<Double> = normaliseYFun(xArray,xGridArray, yArray),
-                  val normalisedXArray:ArrayList<Double> = normaliseXFun(yArray,yGridArray,xArray),
+class MatrixCell(val name: String,
+                 val vArray:ArrayList<Double>,
+                 val iArray:ArrayList<Double>,
+                 val startingTemp:Double,
+                 val startingIllu:Double,
+                 val vTempCoe:Double,
+                 val iTempCoe:Double,
+                 val iIlluCoe:Double,
 )
  {
 
@@ -23,53 +16,6 @@ class Matrix_Cell(val name: String,
     fun returnName():String{
         return this.name
     }
-
-    fun returnAsString():String{
-        var i = 0
-        var returnString:String =""
-        while(i < xGridArray.size){
-            returnString+=this.xGridArray.get(i).toString() + ":" + this.normalizedYArray.get(i)+"\n"
-            i++
-        }
-        return returnString
-
-    }
-
-     fun returnnormalizedYArray():ArrayList<Double>{
-         return  this.normalizedYArray
-     }
-
-
-
-    fun returnYAsDataPoints():LineGraphSeries<DataPoint?>{
-        var i = 0
-        var dataArray:Array<DataPoint?> = arrayOfNulls<DataPoint>(xGridArray.size.toInt())
-        while (i<this.xGridArray.size){
-            var dummyDP:DataPoint = DataPoint(this.xGridArray.get(i), this.normalizedYArray.get(i))
-            dataArray[i] = dummyDP
-            i++
-        }
-        val returnSeries:LineGraphSeries<DataPoint?> = LineGraphSeries(dataArray)
-
-        return returnSeries
-    }
-
-
-     fun returnXAsDataPoints():LineGraphSeries<DataPoint?>{
-         var i = 0
-         var dataArray:Array<DataPoint?> = arrayOfNulls<DataPoint>(yGridArray.size.toInt())
-         var arr2 = this.normalisedXArray.sorted()
-         while (i<this.yGridArray.size){
-             var dummyDP:DataPoint = DataPoint(arr2.get(i), this.yGridArray.get(i))
-             dataArray[i] = dummyDP
-             i++
-         }
-
-         val returnSeries:LineGraphSeries<DataPoint?> = LineGraphSeries(dataArray)
-         return returnSeries
-     }
-
-
 
 
 
@@ -100,15 +46,19 @@ class Matrix_Cell(val name: String,
                 }
                 i++
             }
-            var a1 = (returnY[returnY.size - 3] - returnY[returnY.size - 4])/(returnX[returnX.size - 3] - returnX[returnX.size - 4])
-            var a2 = (returnY[returnY.size - 2] - returnY[returnY.size - 3])/(returnX[returnX.size - 2] - returnX[returnX.size - 3])
-            var a3 = (returnY[returnY.size - 1] - returnY[returnY.size - 2])/(returnX[returnX.size - 1] - returnX[returnX.size - 2])
-            var avg:Double = (a1+a2+a3)/3
-            var b:Double = -avg*returnX[returnX.size-1]
-            var x:Double = -b/avg
-            returnX.add(x)
-            returnY.add(0.0)
-
+            if(returnX.size >=3){
+                var a1 = (returnY[returnY.size - 3] - returnY[returnY.size - 4])/(returnX[returnX.size - 3] - returnX[returnX.size - 4])
+                var a2 = (returnY[returnY.size - 2] - returnY[returnY.size - 3])/(returnX[returnX.size - 2] - returnX[returnX.size - 3])
+                var a3 = (returnY[returnY.size - 1] - returnY[returnY.size - 2])/(returnX[returnX.size - 1] - returnX[returnX.size - 2])
+                var avg:Double = (a1+a2+a3)/3
+                var b:Double = -avg*returnX[returnX.size-1]
+                var x:Double = -b/avg
+                returnX.add(x)
+                returnY.add(0.0)
+            } else {
+                returnX.add(0.0)
+                returnY.add(0.0)
+            }
 
             var returnPair:Pair<ArrayList<Double>,ArrayList<Double>> = Pair(returnX, returnY)
             return returnPair
@@ -140,12 +90,20 @@ class Matrix_Cell(val name: String,
 
         }
 
+        fun calcZero(xArray:ArrayList<Double>, yArray:ArrayList<Double>):Double{
+            var a = (yArray[yArray.size-1] - yArray[yArray.size-2])/(xArray[xArray.size-1] - xArray[xArray.size-2])
+            var b = (yArray[yArray.size-1]) - (a * xArray[xArray.size-1])
+            var x = -b/a
+            return x
+
+        }
+
 
         fun gridY(step: Double, upperBound: Double): ArrayList<Double> {
             var i: Double = 0.toDouble()
             var index: Int = 0;
-            var yArrayNormalised: ArrayList<Double> = ArrayList()
-            while (i < upperBound) {
+            val yArrayNormalised: ArrayList<Double> = ArrayList()
+            while (i <= upperBound) {
                 yArrayNormalised.add(index, i)
                 i += step
                 index +=1
@@ -158,7 +116,6 @@ class Matrix_Cell(val name: String,
             var value:Double
             var arrayNormalised:ArrayList<Double> = ArrayList()
             var hlpArray:ArrayList<Double> = ArrayList()
-            baseArray.add(0.0)
             processedArray.add(processedArray.max())
             for(x in gridBaseArray){
                 var lesser = lesserXVal(x, baseArray)
@@ -256,6 +213,24 @@ class Matrix_Cell(val name: String,
             } else {
                 return rtList.sorted()[0]
             }
+
+        }
+
+        fun stepCalc(value:Double):Double{
+            if(value > 40){
+                return 0.1
+            } else if(value > 20){
+                return 0.07
+            } else if(value>10){
+                return 0.04
+            } else if(value>5){
+                return 0.02
+            } else if(value >2){
+                return 0.01
+            } else {
+                return 0.005
+            }
+
 
         }
 

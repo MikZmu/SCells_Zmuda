@@ -1,4 +1,4 @@
-package com.example.scells_zmuda.ui.theme
+package com.example.scells_zmuda
 
 import androidx.lifecycle.ViewModel
 
@@ -9,8 +9,8 @@ class circuitFragmentViewModel : ViewModel() {
     private var illuCol:ArrayList<ArrayList<Int>> = normaliseIllu()
     private var tempCol:ArrayList<ArrayList<Int>> = normaliseTemp()
     private var cellCol:ArrayList<ArrayList<String>> = initCells()
-    private var toggle:Boolean = false
-    private var counter:Int = 0
+    private var toggle:Boolean = true
+    private var counter:Int = 1
     private var firstX:Int = 0
     private var firstY:Int = 0
     private var secondX:Int = 0
@@ -36,8 +36,8 @@ class circuitFragmentViewModel : ViewModel() {
         this.firstX = fx
     }
 
-    fun setFY(sy:Int){
-        this.firstY = sy
+    fun setFY(fy:Int){
+        this.firstY = fy
     }
 
     fun setSX(sx:Int){
@@ -150,8 +150,8 @@ class circuitFragmentViewModel : ViewModel() {
                 rowCells[j] = name
             }
         }
-        this.illuCol = normaliseIllu()
         this.tempCol = normaliseTemp()
+        this.illuCol = normaliseIllu()
 
 
     }
@@ -169,14 +169,14 @@ class circuitFragmentViewModel : ViewModel() {
     }
 
     fun normaliseIllu():ArrayList<ArrayList<Int>>{
-        var returnList:ArrayList<ArrayList<Int>> = ArrayList()
+        val returnList:ArrayList<ArrayList<Int>> = ArrayList()
         var i = 0
         while (i < this.illuMatrix.size){
             returnList.add(ArrayList())
-            var row = this.illuMatrix.get(i)
+            val row = this.illuMatrix.get(i)
             var j = 0
             while(j < row.size){
-                returnList[i].add((illuMatrix[i][j]/4).toInt())
+                returnList[i].add((illuMatrix[i][j]/1500*255).toInt())
                 j++
             }
             i++
@@ -196,7 +196,7 @@ class circuitFragmentViewModel : ViewModel() {
             var row = this.tempMatrix.get(i)
             var j = 0
             while(j < row.size){
-                returnList[i].add((tempMatrix[i][j]*2).toInt())
+                returnList[i].add((((tempMatrix[i][j])+50)/150*255).toInt())
                 j++
             }
             i++

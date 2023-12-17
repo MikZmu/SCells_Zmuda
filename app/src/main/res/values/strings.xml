@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">SCells_Zmuda</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="Temp.">Temp.</string>
     <string name="Illu">Illu</string>
+    <string name="panel_designer">Panel</string>
+    <string name="panel_Data">Panel Data</string>
+    <string name="cell_Data">Cell Data</string>
 </resources>

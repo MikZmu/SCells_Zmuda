@@ -1,31 +1,16 @@
 package com.example.scells_zmuda
 
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.viewModels
-import com.example.myapplication2.circuit
-import com.example.myapplication2.helper
-import com.example.myapplication2.line
+import com.example.myapplication2.Circuit
+import com.example.myapplication2.Singleton
 import com.example.scells_zmuda.databinding.ActivityMainBinding
-import com.example.scells_zmuda.ui.theme.SCells_ZmudaTheme
-import com.example.scells_zmuda.ui.theme.circuitFragmentViewModel
-import com.example.solar_cells_v3.cellList
-import com.google.android.material.navigation.NavigationView
+import com.example.solar_cells_v3.CellList
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,35 +22,37 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //setSupportActionBar(binding.appbar.toolbar)
-        var cellList: cellList = cellList(this)
-        helper.cellList = cellList
-        var line1: line = line()
-        var line2: line = line()
-        var line3: line = line()
-
-        var circuit:circuit = circuit()
-        circuit.lines.add(line1)
-        circuit.lines.add(line2)
-        circuit.lines.add(line3)
-        helper.circuit = circuit
-
-
+        var cellList: CellList = CellList(this)
+        Singleton.cellList = cellList
+        var circuit:Circuit = Circuit()
+        Singleton.circuit = circuit
         toggle = ActionBarDrawerToggle(this, binding.drawer, binding.appbar.toolbar, R.string.drawer_open, R.string.drawer_open)
         binding.drawer.addDrawerListener(toggle)
         toggle.syncState()
-        fragmentReplacer(circuitFragment())
 
 
         binding.navigationView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_circuit -> fragmentReplacer(circuitFragment())
-                R.id.nav_graph -> fragmentReplacer(graphFragment())
-                R.id.nav_cells -> fragmentReplacer(cellFragment())
+
+            if(it.itemId == R.id.nav_circuit){
+                binding.appbar.title.text = "Panel Designer"
+                fragmentReplacer(CircuitFragment())
+            }
+            if(it.itemId == R.id.nav_graph){
+                binding.appbar.title.text = "Panel Data"
+                fragmentReplacer(GraphFragment())
+            }
+            if(it.itemId == R.id.nav_cells){
+                binding.appbar.title.text = "Cell Data"
+                fragmentReplacer(CellFragment())
+
             }
             true
-
         }
+        fragmentReplacer(CircuitFragment())
+        binding.appbar.title.text = "Panel Designer"
+
+
+
 
 
 
