@@ -1,5 +1,6 @@
 package com.example.scells_zmuda
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -119,15 +120,15 @@ class CellFragment : Fragment() {
         ioptext.text = (CircuitFragment.subscriptSpanner("IOP[A]≈",0,1,3))
 
         fun inputCheck(): Boolean {
-            if(illutext.toString().toDoubleOrNull() == null || temptext.toString().toDoubleOrNull() == null || res.toString().toDoubleOrNull() == null){
+            if(illu.text.toString().toDoubleOrNull() == null || temp.text.toString().toDoubleOrNull() == null || res.text.toString().toDoubleOrNull() == null){
                 Toast.makeText(activity,"Incorrect Input", Toast.LENGTH_SHORT).show()
                 return false
             }
-            if(illutext.toString().toDouble() > 1500 || temptext.toString().toDouble() > 125){
+            if(illu.text.toString().toDouble() > 1500 || temp.text.toString().toDouble() > 125){
                 Toast.makeText(activity,"Incorrect Input", Toast.LENGTH_SHORT).show()
                 return false
             }
-            if(illutext.toString().toDouble() < 150 || temptext.toString().toDouble() < -125){
+            if(illu.text.toString().toDouble() < 150 || temp.text.toString().toDouble() < -25){
                 Toast.makeText(activity,"Incorrect Input", Toast.LENGTH_SHORT).show()
                 return false
             }
@@ -174,19 +175,19 @@ class CellFragment : Fragment() {
                 ff.setText((round(cird.FFMin*100) /100).toString())
                 opt.setText(Circuit.round(2, (cird.UmaxMin)/(cird.ImaxMin)).toString())
                 results = Singleton.circuit.getPower4Resistance(rs)
-                var pop = results[2]
-                var uop = results[0]
-                var iop = results[1]
+                var pop = cird.PmaxMin
+                var uop = cird.UmaxMin
+                var iop = cird.ImaxMin
                 Pop.setText(Circuit.round(2,pop).toString())
                 Iop.setText(Circuit.round(2,iop).toString())
                 Uop.setText(Circuit.round(2,uop).toString())
 
                 powerSeries = cird.minPowerPoints
-                powerSeries.color = android.graphics.Color.YELLOW
-                powerSeries.thickness = 4
+                powerSeries.setColor(Color.argb(255,255,255,0))
+                powerSeries.thickness = 9
                 currentSeries = cird.mindataPoints
-                currentSeries.color = android.graphics.Color.GREEN
-                currentSeries.thickness = 4
+                currentSeries.setColor(Color.argb(255,255,0,0))
+                currentSeries.thickness = 9
 
                 if (scr.isChecked){
                     graph.removeAllSeries()

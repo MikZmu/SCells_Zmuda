@@ -86,6 +86,8 @@ class Circuit() {
         this.maxGridX= MatrixCell.gridX(MatrixCell.stepCalc(maxX), maxX)
         this.minSum = calcNormSum()
         this.maxSum = calculatePrfktSum()
+
+
         if(zeroCirc()){
             this.minGridX.add(MatrixCell.calcZero(this.minGridX, minSum))
             this.maxGridX.add(MatrixCell.calcZero(this.maxGridX, maxSum))

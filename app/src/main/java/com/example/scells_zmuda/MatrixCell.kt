@@ -32,14 +32,14 @@ class MatrixCell(val name: String,
                             , illu:Double):Pair<ArrayList<Double>
                             ,ArrayList<Double>>{
 
-            var pair:Pair<ArrayList<Double>,ArrayList<Double>> = Pair(xArray, yArray)
-            var returnX:ArrayList<Double> = ArrayList()
-            var returnY:ArrayList<Double> = ArrayList()
+            val pair:Pair<ArrayList<Double>,ArrayList<Double>> = Pair(xArray, yArray)
+            val returnX:ArrayList<Double> = ArrayList()
+            val returnY:ArrayList<Double> = ArrayList()
             var i =0
             while (i<pair.first.size-1){
 
-                var res1:Double = pair.first[i] + (temp - startingTemp) *v_temp_coe
-                var res2:Double = pair.second[i] + (temp-startingTemp)*i_temp_coe + (illu-startingIllu)*i_illu_coe
+                val res1:Double = pair.first[i] + (temp - startingTemp) *v_temp_coe
+                val res2:Double = pair.second[i] + (temp-startingTemp)*i_temp_coe + (illu-startingIllu)*i_illu_coe
                 if(res1 >0 && res2 >0){
                     returnX.add(res1)
                     returnY.add(res2)
@@ -47,20 +47,18 @@ class MatrixCell(val name: String,
                 i++
             }
             if(returnX.size >=3){
-                var a1 = (returnY[returnY.size - 3] - returnY[returnY.size - 4])/(returnX[returnX.size - 3] - returnX[returnX.size - 4])
-                var a2 = (returnY[returnY.size - 2] - returnY[returnY.size - 3])/(returnX[returnX.size - 2] - returnX[returnX.size - 3])
-                var a3 = (returnY[returnY.size - 1] - returnY[returnY.size - 2])/(returnX[returnX.size - 1] - returnX[returnX.size - 2])
-                var avg:Double = (a1+a2+a3)/3
-                var b:Double = -avg*returnX[returnX.size-1]
-                var x:Double = -b/avg
+                val a1 = (returnY[returnY.size - 3] - returnY[returnY.size - 4])/(returnX[returnX.size - 3] - returnX[returnX.size - 4])
+                val a2 = (returnY[returnY.size - 2] - returnY[returnY.size - 3])/(returnX[returnX.size - 2] - returnX[returnX.size - 3])
+                val a3 = (returnY[returnY.size - 1] - returnY[returnY.size - 2])/(returnX[returnX.size - 1] - returnX[returnX.size - 2])
+                val avg:Double = (a1+a2+a3)/3
+                val b:Double = -avg*returnX[returnX.size-1]
+                val x:Double = -b/avg
                 returnX.add(x)
-                returnY.add(0.0)
             } else {
-                returnX.add(0.0)
-                returnY.add(0.0)
+                returnX.add(returnX.max())
             }
-
-            var returnPair:Pair<ArrayList<Double>,ArrayList<Double>> = Pair(returnX, returnY)
+            returnY.add(0.0)
+            val returnPair:Pair<ArrayList<Double>,ArrayList<Double>> = Pair(returnX, returnY)
             return returnPair
         }
 

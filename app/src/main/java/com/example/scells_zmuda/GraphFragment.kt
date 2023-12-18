@@ -1,5 +1,6 @@
 package com.example.scells_zmuda
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -71,25 +72,25 @@ class GraphFragment : Fragment() {
         ioptext.text = (CircuitFragment.subscriptSpanner("IOP[A]≈",0,1,3))
 
         var currentSeries:LineGraphSeries<DataPoint> = Singleton.circuit.mindataPoints
-        currentSeries.thickness = 3
-        currentSeries.setColor(android.graphics.Color.RED)
+        currentSeries.thickness = 9
+        currentSeries.setColor(Color.argb(255,255,0,0))
         currentSeries.title = "real I = f(U)"
 
         var powerSeries:LineGraphSeries<DataPoint> = Singleton.circuit.minPowerPoints
-        powerSeries.thickness = 3
-        powerSeries.setColor(android.graphics.Color.YELLOW)
+        powerSeries.thickness = 9
+        powerSeries.setColor(Color.argb(255,255,255,0))
         powerSeries.title = "real P = f(U)"
 
         var idealSeries:LineGraphSeries<DataPoint> = Singleton.circuit.maxDataPoints
 
-        idealSeries.thickness = 3
-        idealSeries.setColor(android.graphics.Color.CYAN)
+        idealSeries.thickness = 9
+        idealSeries.setColor(Color.argb(255,0,255,255))
         idealSeries.title = "potential I = f(U)"
 
         var maxPowerSeries:LineGraphSeries<DataPoint> = Singleton.circuit.maxPowerPoints
 
-        maxPowerSeries.thickness = 3
-        maxPowerSeries.setColor(android.graphics.Color.GREEN)
+        maxPowerSeries.thickness = 9
+        maxPowerSeries.setColor(Color.argb(255,0,255,0))
         maxPowerSeries.title = "potential P = f(U)"
 
         var seriesArray:ArrayList<LineGraphSeries<DataPoint>> = ArrayList()

@@ -406,12 +406,12 @@ class CircuitFragment : Fragment(),View.OnClickListener {
             for(col in row){
                 var color:Int = matrix.get(Singleton.buttons.indexOf(row)).get(row.indexOf(col))
                 if(vm.getCells().get(Singleton.buttons.indexOf(row)).get(row.indexOf(col)) == "zeros."){
-                    col.setColorFilter(Color.argb(255,128,128,128))
+                    col.setColorFilter(Color.argb(150,128,128,128))
                 }
                 else if(vm.getToggle()){
-                    col.setColorFilter(Color.argb(255,0,255,color))
+                    col.setColorFilter(Color.argb(150,0,255,color))
                 } else {
-                    col.setColorFilter(Color.argb(255,255,color,0))
+                    col.setColorFilter(Color.argb(150,255,color,0))
                 }
 
             }

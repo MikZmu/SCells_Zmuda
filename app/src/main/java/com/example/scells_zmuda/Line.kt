@@ -243,8 +243,8 @@ fun normaliseNormalYFun():ArrayList<Double>{
     val smallestfun = this.cells.get(shortestYindex())
     val smallestnorm = MatrixCell.normaliseYFun(smallestfun.normalisedXArray, smallestfun.xGridArray,this.minGridY)
     while (i<returnArray.size){
-        if(returnArray[returnArray.size-i-1] > smallestnorm.getOrElse(smallestnorm.size-i-1){smallestnorm.max()}){
-            returnArray[returnArray.size-i-1] = smallestnorm.getOrElse(smallestnorm.size-i-1){smallestnorm.max()}
+        if(returnArray[i] > smallestfun.yArray[0]){
+            returnArray[i] = smallestfun.yArray[0]
         }
         i++
     }
