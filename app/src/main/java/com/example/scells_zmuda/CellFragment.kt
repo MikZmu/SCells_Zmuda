@@ -60,14 +60,16 @@ class CellFragment : Fragment() {
         var name:String = list[0]
         cird.modify(0,0,0,0,illu.text.toString().toDouble(), temp.text.toString().toDouble(),name)
         val arrayAdapter = ArrayAdapter(requireContext(),
-            androidx.appcompat.R.layout.select_dialog_item_material,list)
+            android.R.layout.simple_list_item_single_choice,list)
+        cel.choiceMode=ListView.CHOICE_MODE_SINGLE
         cel.adapter = arrayAdapter
         var powerSeries = cird.minPowerPoints
-        powerSeries.color = android.graphics.Color.YELLOW
-        powerSeries.thickness = 4
+        cel.setItemChecked(0, true)
+        powerSeries.setColor(Color.argb(255,255,255,0))
+        powerSeries.thickness = 9
         var currentSeries = cird.mindataPoints
-        currentSeries.color = android.graphics.Color.GREEN
-        currentSeries.thickness = 4
+        currentSeries.setColor(Color.argb(255,255,0,0))
+        currentSeries.thickness = 9
         uoc.setText((round(cird.UocMin*100) /100).toString())
         isc.setText((round(cird.IscMin*100) /100).toString())
         pmax.setText((round(cird.PmaxMin*100) /100).toString())
